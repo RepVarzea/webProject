@@ -54,3 +54,4 @@ D:\projetoscaio\SiteVarzea\SiteVarzea\bin\EntityFramework.dll
 D:\projetoscaio\SiteVarzea\SiteVarzea\bin\EntityFramework.SqlServer.dll
 D:\projetoscaio\SiteVarzea\SiteVarzea\bin\EntityFramework.xml
 D:\projetoscaio\SiteVarzea\SiteVarzea\bin\EntityFramework.SqlServer.xml
+D:\projetoscaio\SiteVarzea\SiteVarzea\obj\Debug\SiteVarzea.csprojResolveAssemblyReference.cache

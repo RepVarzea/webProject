@@ -249,6 +249,8 @@
     <Content Include="Views\MORADORs\Details.cshtml" />
     <Content Include="Views\MORADORs\Edit.cshtml" />
     <Content Include="Views\MORADORs\Index.cshtml" />
+    <Content Include="Views\MORADORs\Login.cshtml" />
+    <Content Include="Views\MORADORs\LoggedIn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

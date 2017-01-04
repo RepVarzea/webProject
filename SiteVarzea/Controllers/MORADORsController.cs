@@ -21,6 +21,44 @@ namespace SiteVarzea.Controllers
             return View(mORADOR.ToList());
         }
 
+        //Login
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(MORADOR user)
+        {
+            var usr = db.MORADOR.Where(u => u.login == user.login && u.senha == user.senha).FirstOrDefault();
+            if(usr != null)
+            {
+                Session["id_morador"] = usr.id_morador.ToString();
+                Session["nome"] = usr.nome.ToString();
+                return RedirectToAction("LoggedIn");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Username or password is wrong.");
+            }
+            return View();
+        }
+
+        //LoggedIn
+        public ActionResult LoggedIn()
+        {
+            if(Session["id_morador"] != null)
+            {
+                var usr = db.MORADOR.Where(u => u.id_morador.ToString() == Session["id_morador"].ToString()).FirstOrDefault();
+                Session["usr"] = usr;
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Details");
+            }
+        }
+
         // GET: MORADORs/Details/5
         public ActionResult Details(int? id)
         {
@@ -59,6 +97,7 @@ namespace SiteVarzea.Controllers
             }
 
             ViewBag.id_morador = new SelectList(db.GASTO, "id_gasto", "descricao", mORADOR.id_morador);
+            ViewBag.Message = mORADOR.nome + "/" + mORADOR.ano + " " + "registrado com sucesso.";
             return View(mORADOR);
         }
 
