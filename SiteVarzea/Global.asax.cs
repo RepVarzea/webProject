@@ -18,4 +18,5 @@ namespace SiteVarzea
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
     }
+
 }

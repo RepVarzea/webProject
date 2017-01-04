@@ -7,12 +7,14 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SiteVarzea.Models;
+using System.Threading;
 
 namespace SiteVarzea.Controllers
 {
     public class MORADORsController : Controller
     {
         private RepVarzeaEntities db = new RepVarzeaEntities();
+        private VerificaSQL verifica = new VerificaSQL();
 
         // GET: MORADORs
         public ActionResult Index()
@@ -59,7 +61,7 @@ namespace SiteVarzea.Controllers
             return View(mORADOR);
         }
 
-        // GET: MORADORs/Details/5
+        // GET: ContaDetails/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -74,34 +76,41 @@ namespace SiteVarzea.Controllers
             return View(mORADOR);
         }
 
-        // GET: MORADORs/Create
+        // GET: ContaCreate
         public ActionResult Create()
         {
             ViewBag.id_morador = new SelectList(db.GASTO, "id_gasto", "descricao");
             return View();
         }
 
-        // POST: MORADORs/Create
+        // POST: ContaCreate
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_morador,nome,ano,email,aux,ativo,login,senha,confirmaSenha")] MORADOR mORADOR)
+        public ActionResult Create([Bind(Include = "id_morador,nome,ano,email,aux,ativo,login,senha,confirmaSenha")] MORADOR USER)
         {
             if (ModelState.IsValid)
             {
-                mORADOR.ativo = mORADOR.aux ? 1 : 0;
-                db.MORADOR.Add(mORADOR);
+                USER.ativo = USER.aux ? 1 : 0;
+                string check = verifica.existeLogin(USER);
+                if (!string.IsNullOrEmpty(check))
+                {
+                    ModelState.AddModelError("",check + " já cadastrado.");
+                    return View();
+                }
+
+                db.MORADOR.Add(USER);
                 db.SaveChanges();
-                return RedirectToAction("Index");
             }
 
-            ViewBag.id_morador = new SelectList(db.GASTO, "id_gasto", "descricao", mORADOR.id_morador);
-            ViewBag.Message = mORADOR.nome + "/" + mORADOR.ano + " " + "registrado com sucesso.";
-            return View(mORADOR);
+            ViewBag.id_morador = new SelectList(db.GASTO, "id_gasto", "descricao", USER.id_morador);
+            ViewBag.Message = USER.nome + "/" + USER.ano + " " + "registrado com sucesso.";
+            Thread.Sleep(3000);
+            return RedirectToAction("Login");
         }
 
-        // GET: MORADORs/Edit/5
+        // GET: ContaEdit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -117,7 +126,7 @@ namespace SiteVarzea.Controllers
             return View(mORADOR);
         }
 
-        // POST: MORADORs/Edit/5
+        // POST: ContaEdit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -134,7 +143,7 @@ namespace SiteVarzea.Controllers
             return View(mORADOR);
         }
 
-        // GET: MORADORs/Delete/5
+        // GET: ContaDelete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -149,7 +158,7 @@ namespace SiteVarzea.Controllers
             return View(mORADOR);
         }
 
-        // POST: MORADORs/Delete/5
+        // POST: ContaDelete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
