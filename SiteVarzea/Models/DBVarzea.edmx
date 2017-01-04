@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="RepVarzeaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="GASTO">
+          <Key>
+            <PropertyRef Name="id_gasto" />
+          </Key>
+          <Property Name="id_gasto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_morador" Type="int" Nullable="false" />
+          <Property Name="descricao" Type="varchar" MaxLength="250" />
+          <Property Name="data" Type="datetime" />
+          <Property Name="valor" Type="decimal" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="GASTO_MORADOR">
+          <Key>
+            <PropertyRef Name="id_gasto_morador" />
+          </Key>
+          <Property Name="id_gasto_morador" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_morador" Type="int" Nullable="false" />
+          <Property Name="id_gasto" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MORADOR">
+          <Key>
+            <PropertyRef Name="id_morador" />
+          </Key>
+          <Property Name="id_morador" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="250" />
+          <Property Name="ano" Type="numeric" Precision="4" Scale="0" />
+          <Property Name="email" Type="varchar" MaxLength="150" />
+          <Property Name="ativo" Type="numeric" Precision="1" Scale="0" />
+          <Property Name="login" Type="varchar" MaxLength="20" />
+          <Property Name="senha" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <Association Name="FK_GASTO_MORADOR">
+          <End Role="MORADOR" Type="Self.MORADOR" Multiplicity="1" />
+          <End Role="GASTO" Type="Self.GASTO" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="MORADOR">
+              <PropertyRef Name="id_morador" />
+            </Principal>
+            <Dependent Role="GASTO">
+              <PropertyRef Name="id_gasto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GASTOMORADOR_GASTO">
+          <End Role="GASTO" Type="Self.GASTO" Multiplicity="1" />
+          <End Role="GASTO_MORADOR" Type="Self.GASTO_MORADOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GASTO">
+              <PropertyRef Name="id_gasto" />
+            </Principal>
+            <Dependent Role="GASTO_MORADOR">
+              <PropertyRef Name="id_gasto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GASTOMORADOR_MORADOR">
+          <End Role="MORADOR" Type="Self.MORADOR" Multiplicity="1" />
+          <End Role="GASTO_MORADOR" Type="Self.GASTO_MORADOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MORADOR">
+              <PropertyRef Name="id_morador" />
+            </Principal>
+            <Dependent Role="GASTO_MORADOR">
+              <PropertyRef Name="id_morador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RepVarzeaModelStoreContainer">
+          <EntitySet Name="GASTO" EntityType="Self.GASTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GASTO_MORADOR" EntityType="Self.GASTO_MORADOR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MORADOR" EntityType="Self.MORADOR" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_GASTO_MORADOR" Association="Self.FK_GASTO_MORADOR">
+            <End Role="MORADOR" EntitySet="MORADOR" />
+            <End Role="GASTO" EntitySet="GASTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GASTOMORADOR_GASTO" Association="Self.FK_GASTOMORADOR_GASTO">
+            <End Role="GASTO" EntitySet="GASTO" />
+            <End Role="GASTO_MORADOR" EntitySet="GASTO_MORADOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GASTOMORADOR_MORADOR" Association="Self.FK_GASTOMORADOR_MORADOR">
+            <End Role="MORADOR" EntitySet="MORADOR" />
+            <End Role="GASTO_MORADOR" EntitySet="GASTO_MORADOR" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RepVarzeaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="GASTO">
+          <Key>
+            <PropertyRef Name="id_gasto" />
+          </Key>
+          <Property Name="id_gasto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_morador" Type="Int32" Nullable="false" />
+          <Property Name="descricao" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="data" Type="DateTime" Precision="3" />
+          <Property Name="valor" Type="Decimal" Precision="5" Scale="2" />
+          <NavigationProperty Name="MORADOR" Relationship="Self.FK_GASTO_MORADOR" FromRole="GASTO" ToRole="MORADOR" />
+          <NavigationProperty Name="GASTO_MORADOR" Relationship="Self.FK_GASTOMORADOR_GASTO" FromRole="GASTO" ToRole="GASTO_MORADOR" />
+        </EntityType>
+        <EntityType Name="GASTO_MORADOR">
+          <Key>
+            <PropertyRef Name="id_gasto_morador" />
+          </Key>
+          <Property Name="id_gasto_morador" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_morador" Type="Int32" Nullable="false" />
+          <Property Name="id_gasto" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GASTO" Relationship="Self.FK_GASTOMORADOR_GASTO" FromRole="GASTO_MORADOR" ToRole="GASTO" />
+          <NavigationProperty Name="MORADOR" Relationship="Self.FK_GASTOMORADOR_MORADOR" FromRole="GASTO_MORADOR" ToRole="MORADOR" />
+        </EntityType>
+        <EntityType Name="MORADOR">
+          <Key>
+            <PropertyRef Name="id_morador" />
+          </Key>
+          <Property Name="id_morador" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ano" Type="Decimal" Precision="4" Scale="0" />
+          <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ativo" Type="Decimal" Precision="1" Scale="0" />
+          <Property Name="login" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="senha" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GASTO" Relationship="Self.FK_GASTO_MORADOR" FromRole="MORADOR" ToRole="GASTO" />
+          <NavigationProperty Name="GASTO_MORADOR" Relationship="Self.FK_GASTOMORADOR_MORADOR" FromRole="MORADOR" ToRole="GASTO_MORADOR" />
+        </EntityType>
+        <Association Name="FK_GASTO_MORADOR">
+          <End Role="MORADOR" Type="Self.MORADOR" Multiplicity="1" />
+          <End Role="GASTO" Type="Self.GASTO" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="MORADOR">
+              <PropertyRef Name="id_morador" />
+            </Principal>
+            <Dependent Role="GASTO">
+              <PropertyRef Name="id_gasto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GASTOMORADOR_GASTO">
+          <End Role="GASTO" Type="Self.GASTO" Multiplicity="1" />
+          <End Role="GASTO_MORADOR" Type="Self.GASTO_MORADOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GASTO">
+              <PropertyRef Name="id_gasto" />
+            </Principal>
+            <Dependent Role="GASTO_MORADOR">
+              <PropertyRef Name="id_gasto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GASTOMORADOR_MORADOR">
+          <End Role="MORADOR" Type="Self.MORADOR" Multiplicity="1" />
+          <End Role="GASTO_MORADOR" Type="Self.GASTO_MORADOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MORADOR">
+              <PropertyRef Name="id_morador" />
+            </Principal>
+            <Dependent Role="GASTO_MORADOR">
+              <PropertyRef Name="id_morador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RepVarzeaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="GASTO" EntityType="Self.GASTO" />
+          <EntitySet Name="GASTO_MORADOR" EntityType="Self.GASTO_MORADOR" />
+          <EntitySet Name="MORADOR" EntityType="Self.MORADOR" />
+          <AssociationSet Name="FK_GASTO_MORADOR" Association="Self.FK_GASTO_MORADOR">
+            <End Role="MORADOR" EntitySet="MORADOR" />
+            <End Role="GASTO" EntitySet="GASTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GASTOMORADOR_GASTO" Association="Self.FK_GASTOMORADOR_GASTO">
+            <End Role="GASTO" EntitySet="GASTO" />
+            <End Role="GASTO_MORADOR" EntitySet="GASTO_MORADOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GASTOMORADOR_MORADOR" Association="Self.FK_GASTOMORADOR_MORADOR">
+            <End Role="MORADOR" EntitySet="MORADOR" />
+            <End Role="GASTO_MORADOR" EntitySet="GASTO_MORADOR" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RepVarzeaModelStoreContainer" CdmEntityContainer="RepVarzeaEntities">
+          <EntitySetMapping Name="GASTO">
+            <EntityTypeMapping TypeName="RepVarzeaModel.GASTO">
+              <MappingFragment StoreEntitySet="GASTO">
+                <ScalarProperty Name="id_gasto" ColumnName="id_gasto" />
+                <ScalarProperty Name="id_morador" ColumnName="id_morador" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="valor" ColumnName="valor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GASTO_MORADOR">
+            <EntityTypeMapping TypeName="RepVarzeaModel.GASTO_MORADOR">
+              <MappingFragment StoreEntitySet="GASTO_MORADOR">
+                <ScalarProperty Name="id_gasto_morador" ColumnName="id_gasto_morador" />
+                <ScalarProperty Name="id_morador" ColumnName="id_morador" />
+                <ScalarProperty Name="id_gasto" ColumnName="id_gasto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MORADOR">
+            <EntityTypeMapping TypeName="RepVarzeaModel.MORADOR">
+              <MappingFragment StoreEntitySet="MORADOR">
+                <ScalarProperty Name="id_morador" ColumnName="id_morador" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="ano" ColumnName="ano" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="ativo" ColumnName="ativo" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="senha" ColumnName="senha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
