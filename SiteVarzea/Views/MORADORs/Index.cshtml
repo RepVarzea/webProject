@@ -29,9 +29,6 @@
         <th>
             @Html.DisplayNameFor(model => model.senha)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GASTO.descricao)
-        </th>
         <th></th>
     </tr>
 
@@ -54,9 +51,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.senha)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GASTO.descricao)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.id_morador }) |
