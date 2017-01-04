@@ -6,7 +6,7 @@
 //     Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-using System.ComponentModel.DataAnnotations;
+
 namespace SiteVarzea.Models
 {
     using System;
@@ -20,25 +20,12 @@ namespace SiteVarzea.Models
             this.GASTO_MORADOR = new HashSet<GASTO_MORADOR>();
         }
     
-        [Key]
         public int id_morador { get; set; }
-
-        [Required(ErrorMessage = "Favor inserir o nome.")]
         public string nome { get; set; }
-
-        [Required(ErrorMessage = "Favor inserir o ano que entrou na faculdade.")]
         public Nullable<decimal> ano { get; set; }
-
-        [RegularExpression(@"^([\w-\.]+)@((\[[0-9]{1,3]\.)|(([\w-]+\.)+))([a-zA-Z{2,4}|[0-9]{1,3})(\]?)$", ErrorMessage = "Favor entrar com um email válido.")]
         public string email { get; set; }
-
-        [Required(ErrorMessage = "Favor informar se você está atualmente morando na Várzea.")]
         public Nullable<decimal> ativo { get; set; }
-
-        [Required(ErrorMessage = "Favor inserir o login.")]
         public string login { get; set; }
-
-        [Required(ErrorMessage = "Favor inserir a senha.")]
         public string senha { get; set; }
     
         public virtual GASTO GASTO { get; set; }

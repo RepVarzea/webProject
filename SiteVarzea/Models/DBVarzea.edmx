@@ -100,7 +100,7 @@
           <Property Name="id_gasto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_morador" Type="Int32" Nullable="false" />
           <Property Name="descricao" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="data" Type="DateTime" Precision="3" />
+          <Property Name="data" Type="DateTime" />
           <Property Name="valor" Type="Decimal" Precision="5" Scale="2" />
           <NavigationProperty Name="MORADOR" Relationship="Self.FK_GASTO_MORADOR" FromRole="GASTO" ToRole="MORADOR" />
           <NavigationProperty Name="GASTO_MORADOR" Relationship="Self.FK_GASTOMORADOR_GASTO" FromRole="GASTO" ToRole="GASTO_MORADOR" />
@@ -110,8 +110,6 @@
             <PropertyRef Name="id_gasto_morador" />
           </Key>
           <Property Name="id_gasto_morador" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_morador" Type="Int32" Nullable="false" />
-          <Property Name="id_gasto" Type="Int32" Nullable="false" />
           <NavigationProperty Name="GASTO" Relationship="Self.FK_GASTOMORADOR_GASTO" FromRole="GASTO_MORADOR" ToRole="GASTO" />
           <NavigationProperty Name="MORADOR" Relationship="Self.FK_GASTOMORADOR_MORADOR" FromRole="GASTO_MORADOR" ToRole="MORADOR" />
         </EntityType>
@@ -130,8 +128,8 @@
           <NavigationProperty Name="GASTO_MORADOR" Relationship="Self.FK_GASTOMORADOR_MORADOR" FromRole="MORADOR" ToRole="GASTO_MORADOR" />
         </EntityType>
         <Association Name="FK_GASTO_MORADOR">
-          <End Role="MORADOR" Type="Self.MORADOR" Multiplicity="1" />
-          <End Role="GASTO" Type="Self.GASTO" Multiplicity="0..1" />
+          <End Type="Self.MORADOR" Multiplicity="1" Role="MORADOR" />
+          <End Type="Self.GASTO" Multiplicity="0..1" Role="GASTO" />
           <ReferentialConstraint>
             <Principal Role="MORADOR">
               <PropertyRef Name="id_morador" />
@@ -142,44 +140,28 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_GASTOMORADOR_GASTO">
-          <End Role="GASTO" Type="Self.GASTO" Multiplicity="1" />
-          <End Role="GASTO_MORADOR" Type="Self.GASTO_MORADOR" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="GASTO">
-              <PropertyRef Name="id_gasto" />
-            </Principal>
-            <Dependent Role="GASTO_MORADOR">
-              <PropertyRef Name="id_gasto" />
-            </Dependent>
-          </ReferentialConstraint>
+          <End Type="Self.GASTO" Multiplicity="1" Role="GASTO" />
+          <End Type="Self.GASTO_MORADOR" Multiplicity="*" Role="GASTO_MORADOR" />
         </Association>
         <Association Name="FK_GASTOMORADOR_MORADOR">
-          <End Role="MORADOR" Type="Self.MORADOR" Multiplicity="1" />
-          <End Role="GASTO_MORADOR" Type="Self.GASTO_MORADOR" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MORADOR">
-              <PropertyRef Name="id_morador" />
-            </Principal>
-            <Dependent Role="GASTO_MORADOR">
-              <PropertyRef Name="id_morador" />
-            </Dependent>
-          </ReferentialConstraint>
+          <End Type="Self.MORADOR" Multiplicity="1" Role="MORADOR" />
+          <End Type="Self.GASTO_MORADOR" Multiplicity="*" Role="GASTO_MORADOR" />
         </Association>
         <EntityContainer Name="RepVarzeaEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="GASTO" EntityType="Self.GASTO" />
           <EntitySet Name="GASTO_MORADOR" EntityType="Self.GASTO_MORADOR" />
           <EntitySet Name="MORADOR" EntityType="Self.MORADOR" />
           <AssociationSet Name="FK_GASTO_MORADOR" Association="Self.FK_GASTO_MORADOR">
-            <End Role="MORADOR" EntitySet="MORADOR" />
-            <End Role="GASTO" EntitySet="GASTO" />
+            <End EntitySet="MORADOR" Role="MORADOR" />
+            <End EntitySet="GASTO" Role="GASTO" />
           </AssociationSet>
           <AssociationSet Name="FK_GASTOMORADOR_GASTO" Association="Self.FK_GASTOMORADOR_GASTO">
-            <End Role="GASTO" EntitySet="GASTO" />
-            <End Role="GASTO_MORADOR" EntitySet="GASTO_MORADOR" />
+            <End EntitySet="GASTO" Role="GASTO" />
+            <End EntitySet="GASTO_MORADOR" Role="GASTO_MORADOR" />
           </AssociationSet>
           <AssociationSet Name="FK_GASTOMORADOR_MORADOR" Association="Self.FK_GASTOMORADOR_MORADOR">
-            <End Role="MORADOR" EntitySet="MORADOR" />
-            <End Role="GASTO_MORADOR" EntitySet="GASTO_MORADOR" />
+            <End EntitySet="MORADOR" Role="MORADOR" />
+            <End EntitySet="GASTO_MORADOR" Role="GASTO_MORADOR" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -203,8 +185,6 @@
             <EntityTypeMapping TypeName="RepVarzeaModel.GASTO_MORADOR">
               <MappingFragment StoreEntitySet="GASTO_MORADOR">
                 <ScalarProperty Name="id_gasto_morador" ColumnName="id_gasto_morador" />
-                <ScalarProperty Name="id_morador" ColumnName="id_morador" />
-                <ScalarProperty Name="id_gasto" ColumnName="id_gasto" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -221,6 +201,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="FK_GASTOMORADOR_GASTO" TypeName="RepVarzeaModel.FK_GASTOMORADOR_GASTO" StoreEntitySet="GASTO_MORADOR">
+            <EndProperty Name="GASTO">
+              <ScalarProperty Name="id_gasto" ColumnName="id_gasto" />
+            </EndProperty>
+            <EndProperty Name="GASTO_MORADOR">
+              <ScalarProperty Name="id_gasto_morador" ColumnName="id_gasto_morador" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_GASTOMORADOR_MORADOR" TypeName="RepVarzeaModel.FK_GASTOMORADOR_MORADOR" StoreEntitySet="GASTO_MORADOR">
+            <EndProperty Name="MORADOR">
+              <ScalarProperty Name="id_morador" ColumnName="id_morador" />
+            </EndProperty>
+            <EndProperty Name="GASTO_MORADOR">
+              <ScalarProperty Name="id_gasto_morador" ColumnName="id_gasto_morador" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -236,9 +232,8 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

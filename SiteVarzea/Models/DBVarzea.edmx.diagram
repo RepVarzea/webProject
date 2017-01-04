@@ -4,13 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0990ddc5760c4077b29c75198b8a96db" Name="Diagram1">
-        <EntityTypeShape EntityType="RepVarzeaModel.GASTO" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="RepVarzeaModel.GASTO_MORADOR" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+      <Diagram DiagramId="a5db8b557ccd48af89b806bf9266faf3" Name="Diagram1">
+        <EntityTypeShape EntityType="RepVarzeaModel.GASTO" Width="1.5" PointX="5.125" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RepVarzeaModel.GASTO_MORADOR" Width="1.5" PointX="3.375" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="RepVarzeaModel.MORADOR" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="RepVarzeaModel.FK_GASTO_MORADOR" ManuallyRouted="false" />
-        <AssociationConnector Association="RepVarzeaModel.FK_GASTOMORADOR_GASTO" ManuallyRouted="false" />
-        <AssociationConnector Association="RepVarzeaModel.FK_GASTOMORADOR_MORADOR" ManuallyRouted="false" />
+        <AssociationConnector ManuallyRouted="false" Association="RepVarzeaModel.FK_GASTO_MORADOR" />
+        <AssociationConnector ManuallyRouted="false" Association="RepVarzeaModel.FK_GASTOMORADOR_GASTO" />
+        <AssociationConnector ManuallyRouted="false" Association="RepVarzeaModel.FK_GASTOMORADOR_MORADOR" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

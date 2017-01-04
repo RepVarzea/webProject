@@ -16,8 +16,6 @@
       <EntityTypeMapping TypeName="RepVarzeaModel.GASTO_MORADOR">
         <MappingFragment StoreEntitySet="GASTO_MORADOR">
           <ScalarProperty Name="id_gasto_morador" ColumnName="id_gasto_morador" />
-          <ScalarProperty Name="id_morador" ColumnName="id_morador" />
-          <ScalarProperty Name="id_gasto" ColumnName="id_gasto" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -34,5 +32,21 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <AssociationSetMapping Name="FK_GASTOMORADOR_GASTO" TypeName="RepVarzeaModel.FK_GASTOMORADOR_GASTO" StoreEntitySet="GASTO_MORADOR">
+      <EndProperty Name="GASTO">
+        <ScalarProperty Name="id_gasto" ColumnName="id_gasto" />
+      </EndProperty>
+      <EndProperty Name="GASTO_MORADOR">
+        <ScalarProperty Name="id_gasto_morador" ColumnName="id_gasto_morador" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_GASTOMORADOR_MORADOR" TypeName="RepVarzeaModel.FK_GASTOMORADOR_MORADOR" StoreEntitySet="GASTO_MORADOR">
+      <EndProperty Name="MORADOR">
+        <ScalarProperty Name="id_morador" ColumnName="id_morador" />
+      </EndProperty>
+      <EndProperty Name="GASTO_MORADOR">
+        <ScalarProperty Name="id_gasto_morador" ColumnName="id_gasto_morador" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

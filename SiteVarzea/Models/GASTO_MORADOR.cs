@@ -15,8 +15,6 @@ namespace SiteVarzea.Models
     public partial class GASTO_MORADOR
     {
         public int id_gasto_morador { get; set; }
-        public int id_morador { get; set; }
-        public int id_gasto { get; set; }
     
         public virtual GASTO GASTO { get; set; }
         public virtual MORADOR MORADOR { get; set; }
