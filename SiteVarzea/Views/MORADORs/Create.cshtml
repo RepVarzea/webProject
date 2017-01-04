@@ -26,7 +26,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ano, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(m => m.ano, Enumerable.Range(2000, DateTime.Now.Year).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), new { @class = "control-label col-md-2" })
+                @Html.EditorFor(m => m.ano, new { htmlAttributes = new { @class = "form-control", min = 2000, @Value = DateTime.Now.Year, max = DateTime.Now.Year } })
                 @Html.ValidationMessageFor(model => model.ano, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -42,7 +42,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ativo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.CheckBoxFor(m => m.aux, htmlAttributes: new { @class = "form-control" })
+                @Html.CheckBoxFor(m => m.aux, htmlAttributes: new { @class = "checkbox" })
                 @Html.ValidationMessageFor(model => model.ativo, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -56,7 +56,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.senha, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.senha, htmlAttributes: new { @class = "control-label col-md-2" } )
             <div class="col-md-10">
                 @Html.EditorFor(model => model.senha, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.senha, "", new { @class = "text-danger" })
@@ -64,9 +64,9 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.confirmaSenha, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Confirme sua senha", htmlAttributes: new { @class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.EditorFor(model => model.confirmaSenha, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.confirmaSenha, new {htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.confirmaSenha, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -80,7 +80,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Login", "Login")
 </div>
 
 @section Scripts {

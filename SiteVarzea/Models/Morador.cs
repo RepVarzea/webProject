@@ -11,7 +11,6 @@ namespace SiteVarzea.Models
 {
     using System;
     using System.Collections.Generic;
-
     public partial class MORADOR
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,11 +23,13 @@ namespace SiteVarzea.Models
         public int id_morador { get; set; }
 
         [Required(ErrorMessage = "Favor inserir o nome.")]
+        [StringLength(250, ErrorMessage = "Nome muito grande.")]
         public string nome { get; set; }
 
-        public Nullable<int> ano { get; set; }
+        public int ano { get; set; }
 
         [Required(ErrorMessage = "Favor inserir o email.")]
+        [StringLength(150,ErrorMessage = "Email muito grande.")]
         [DataType(DataType.EmailAddress)]
         public string email { get; set; }
 
@@ -37,9 +38,11 @@ namespace SiteVarzea.Models
         public Nullable<int> ativo { get; set; }
 
         [Required(ErrorMessage = "Favor inserir o Login.")]
+        [StringLength(20,ErrorMessage = "Login muito grande.")]
         public string login { get; set; }
 
         [Required(ErrorMessage = "Favor inserir a senha.")]
+        [StringLength(20, ErrorMessage = "Senha muito grande.")]
         [DataType(DataType.Password)]
         public string senha { get; set; }
 

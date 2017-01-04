@@ -439,6 +439,8 @@ cite {
 
 .text-danger {
   color: #b94a48;
+
+  text-transform:none;
 }
 
 .text-success {
@@ -1754,6 +1756,8 @@ textarea.form-control {
 
 .form-group {
   margin-bottom: 15px;
+  text-transform:capitalize;
+  text-align:left;
 }
 
 .radio,
@@ -1964,6 +1968,7 @@ textarea.input-lg {
   padding-top: 7px;
   margin-top: 0;
   margin-bottom: 0;
+  text-transform:capitalize;
 }
 
 .form-horizontal .form-group {
