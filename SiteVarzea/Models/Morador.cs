@@ -7,12 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using System.ComponentModel.DataAnnotations;
-
 namespace SiteVarzea.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class MORADOR
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,14 +19,14 @@ namespace SiteVarzea.Models
         {
             this.GASTO_MORADOR = new HashSet<GASTO_MORADOR>();
         }
-    
+
         [Key]
         public int id_morador { get; set; }
 
         [Required(ErrorMessage = "Favor inserir o nome.")]
         public string nome { get; set; }
 
-        public Nullable <decimal> ano { get; set; }
+        public Nullable<int> ano { get; set; }
 
         [Required(ErrorMessage = "Favor inserir o email.")]
         [DataType(DataType.EmailAddress)]
@@ -35,20 +34,20 @@ namespace SiteVarzea.Models
 
         public virtual bool aux { get; set; }
 
-        public Nullable<decimal> ativo { get; set; }
+        public Nullable<int> ativo { get; set; }
 
         [Required(ErrorMessage = "Favor inserir o Login.")]
         public string login { get; set; }
-        
+
         [Required(ErrorMessage = "Favor inserir a senha.")]
         [DataType(DataType.Password)]
         public string senha { get; set; }
 
-        [Required(ErrorMessage =  "Favor confirmar sua senha.")]
-        [Compare("senha",ErrorMessage = "Senhas estão diferentes")]
+        [Required(ErrorMessage = "Favor confirmar sua senha.")]
+        [Compare("senha", ErrorMessage = "Senhas estão diferentes")]
         [DataType(DataType.Password)]
         public virtual string confirmaSenha { get; set; }
-    
+
         public virtual GASTO GASTO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GASTO_MORADOR> GASTO_MORADOR { get; set; }

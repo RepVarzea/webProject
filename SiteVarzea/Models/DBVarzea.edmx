@@ -119,9 +119,9 @@
           </Key>
           <Property Name="id_morador" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nome" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="ano" Type="Decimal" Precision="4" Scale="0" />
+          <Property Name="ano" Type="Int32" />
           <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="ativo" Type="Decimal" Precision="1" Scale="0" />
+          <Property Name="ativo" Type="Int32" />
           <Property Name="login" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="senha" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="GASTO" Relationship="Self.FK_GASTO_MORADOR" FromRole="MORADOR" ToRole="GASTO" />

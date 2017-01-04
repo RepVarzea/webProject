@@ -15,6 +15,8 @@ D:\projetoscaio\SiteVarzea\SiteVarzea\bin\SiteVarzea.dll.config
 D:\projetoscaio\SiteVarzea\SiteVarzea\bin\SiteVarzea.dll
 D:\projetoscaio\SiteVarzea\SiteVarzea\bin\SiteVarzea.pdb
 D:\projetoscaio\SiteVarzea\SiteVarzea\bin\Antlr3.Runtime.dll
+D:\projetoscaio\SiteVarzea\SiteVarzea\bin\EntityFramework.dll
+D:\projetoscaio\SiteVarzea\SiteVarzea\bin\EntityFramework.SqlServer.dll
 D:\projetoscaio\SiteVarzea\SiteVarzea\bin\Microsoft.AI.Agent.Intercept.dll
 D:\projetoscaio\SiteVarzea\SiteVarzea\bin\Microsoft.AI.DependencyCollector.dll
 D:\projetoscaio\SiteVarzea\SiteVarzea\bin\Microsoft.AI.PerfCounterCollector.dll
@@ -33,6 +35,8 @@ D:\projetoscaio\SiteVarzea\SiteVarzea\bin\System.Web.WebPages.Deployment.dll
 D:\projetoscaio\SiteVarzea\SiteVarzea\bin\System.Web.WebPages.dll
 D:\projetoscaio\SiteVarzea\SiteVarzea\bin\System.Web.WebPages.Razor.dll
 D:\projetoscaio\SiteVarzea\SiteVarzea\bin\WebGrease.dll
+D:\projetoscaio\SiteVarzea\SiteVarzea\bin\EntityFramework.xml
+D:\projetoscaio\SiteVarzea\SiteVarzea\bin\EntityFramework.SqlServer.xml
 D:\projetoscaio\SiteVarzea\SiteVarzea\bin\Microsoft.AI.DependencyCollector.xml
 D:\projetoscaio\SiteVarzea\SiteVarzea\bin\Microsoft.AI.ServerTelemetryChannel.xml
 D:\projetoscaio\SiteVarzea\SiteVarzea\bin\Microsoft.AI.Web.xml
@@ -50,8 +54,3 @@ D:\projetoscaio\SiteVarzea\SiteVarzea\bin\Antlr3.Runtime.pdb
 D:\projetoscaio\SiteVarzea\SiteVarzea\bin\Newtonsoft.Json.xml
 D:\projetoscaio\SiteVarzea\SiteVarzea\obj\Debug\SiteVarzea.dll
 D:\projetoscaio\SiteVarzea\SiteVarzea\obj\Debug\SiteVarzea.pdb
-D:\projetoscaio\SiteVarzea\SiteVarzea\bin\EntityFramework.dll
-D:\projetoscaio\SiteVarzea\SiteVarzea\bin\EntityFramework.SqlServer.dll
-D:\projetoscaio\SiteVarzea\SiteVarzea\bin\EntityFramework.xml
-D:\projetoscaio\SiteVarzea\SiteVarzea\bin\EntityFramework.SqlServer.xml
-D:\projetoscaio\SiteVarzea\SiteVarzea\obj\Debug\SiteVarzea.csprojResolveAssemblyReference.cache

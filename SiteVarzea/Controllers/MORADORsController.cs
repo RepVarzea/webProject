@@ -33,7 +33,7 @@ namespace SiteVarzea.Controllers
             var usr = db.MORADOR.Where(u => u.login == user.login && u.senha == user.senha).FirstOrDefault();
             if(usr != null)
             {
-                Session["id_morador"] = usr.id_morador.ToString();
+                Session["id_morador"] = usr.id_morador;
                 Session["nome"] = usr.nome.ToString();
                 return RedirectToAction("LoggedIn");
             }
@@ -47,16 +47,16 @@ namespace SiteVarzea.Controllers
         //LoggedIn
         public ActionResult LoggedIn()
         {
-            if(Session["id_morador"] != null)
+            if (Session["id_morador"] == null)
             {
-                var usr = db.MORADOR.Where(u => u.id_morador.ToString() == Session["id_morador"].ToString()).FirstOrDefault();
-                Session["usr"] = usr;
-                return View();
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            else
+            MORADOR mORADOR = db.MORADOR.Find(Session["id_morador"]);
+            if (mORADOR == null)
             {
-                return RedirectToAction("Details");
+                return HttpNotFound();
             }
+            return View(mORADOR);
         }
 
         // GET: MORADORs/Details/5
