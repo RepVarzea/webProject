@@ -11,6 +11,7 @@ namespace SiteVarzea.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class GASTO
     {
@@ -20,10 +21,19 @@ namespace SiteVarzea.Models
             this.GASTO_MORADOR = new HashSet<GASTO_MORADOR>();
         }
     
+        [Key]
         public int id_gasto { get; set; }
+
+        [Required(ErrorMessage = "Favor fazer o login para continuar.")]
         public int id_morador { get; set; }
+
+        [Required(ErrorMessage = "Favor informar a descrição.")]
         public string descricao { get; set; }
+
+        [Required(ErrorMessage = "Favor informar a data.")]
         public Nullable<System.DateTime> data { get; set; }
+
+        [Required(ErrorMessage = "Favor informar o valor gasto")]
         public Nullable<decimal> valor { get; set; }
     
         public virtual MORADOR MORADOR { get; set; }
