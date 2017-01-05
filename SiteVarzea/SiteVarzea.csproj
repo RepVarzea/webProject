@@ -298,6 +298,7 @@
     <Content Include="Views\Error\Erro404.cshtml" />
     <Content Include="Views\Error\Erro401.cshtml" />
     <Content Include="Views\Contas\Extras.cshtml" />
+    <Content Include="Views\Contas\Novo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

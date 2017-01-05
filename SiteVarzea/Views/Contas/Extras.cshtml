@@ -13,6 +13,7 @@
         <tr>
             <th>Data</th>
             <th>Quem gastou</th>
+            <th>Descricao</th>
             <th>Valor</th>
         </tr>
         @foreach (var gasto in Model)
@@ -20,9 +21,10 @@
             <tr>
                 <td>@gasto.data</td>
                 <td>@gasto.nomeMorador</td>
+                <td>@gasto.descricao</td>
                 <td>@gasto.valor</td>
             </tr>
         }
     </table>
-    <input type="button" value="Criar" class="btn btn-default" onclick="location.href = '@Url.Action("Create", "Contas")'"/>
+    <input type="button" value="Criar" class="btn btn-default" onclick="location.href = '@Url.Action("Novo", "Contas")'"/>
 </div>

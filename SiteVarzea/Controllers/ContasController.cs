@@ -29,7 +29,9 @@ namespace SiteVarzea.Controllers
         public ActionResult Extras()
         {
             string connectionString = ConfigurationManager.ConnectionStrings["RepVarzeaWin"].ConnectionString;
-            string sql = "SELECT * FROM GASTO";
+            string sql = "SELECT  id_gasto,data ,pagou.nome,valor,descricao " +
+                         "FROM GASTO g " +
+                         "LEFT OUTER JOIN MORADOR pagou ON pagou.id_morador = g.id_morador;";
             MORADOR aux = new MORADOR();
             var model = new List<GASTO>();
             try
@@ -42,12 +44,10 @@ namespace SiteVarzea.Controllers
                     while (dr.Read())
                     {
                         var gasto = new GASTO();
-                        int idmorador = (int) dr["id_morador"];
                         gasto.data = DateTime.Parse(dr["data"].ToString());
                         gasto.descricao = dr["descricao"].ToString();
                         gasto.valor = Double.Parse(dr["valor"].ToString());
-                        aux = db.MORADOR.FirstOrDefault(n => n.id_morador == idmorador);
-                        gasto.nomeMorador = aux.nome;
+                        gasto.nomeMorador = dr["nome"].ToString();
                         gasto.id_gasto = Convert.ToInt32(dr["id_gasto"].ToString());
                         model.Add(gasto);
                     }
@@ -61,6 +61,15 @@ namespace SiteVarzea.Controllers
             return View(model);
         }
         #endregion
+
+        public ActionResult Novo()
+        {
+            SelectList lista = new SelectList(db.MORADOR.Where(u => u.ativo == 1).OrderBy(n => n.nome).ToList(),
+                "id_morador", "nome");
+
+            ViewBag.CategoryList = lista;
+            return View();
+        }
 
         // GET: Contas/Create
         public ActionResult Create()
