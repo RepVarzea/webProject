@@ -15,7 +15,7 @@ namespace SiteVarzea.Controllers
     public class MORADORsController : Controller
     {
         private RepVarzeaEntities db = new RepVarzeaEntities();
-        private VerificaSQL verifica = new VerificaSQL();
+        private Functions verifica = new Functions();
 
         // GET: MORADORs
         public ActionResult Index()
@@ -24,7 +24,7 @@ namespace SiteVarzea.Controllers
             return View(mORADOR.ToList());
         }
 
-        #region MORADORES
+        #region Moradores 
         public ActionResult Moradores()
         {
             var mORADOR = db.MORADOR.Include(m => m.GASTO);
@@ -32,6 +32,7 @@ namespace SiteVarzea.Controllers
         }
         #endregion
 
+        #region Login
         //Login
         public ActionResult Login()
         {
@@ -54,6 +55,9 @@ namespace SiteVarzea.Controllers
             }
             return View();
         }
+        #endregion
+
+        #region LoggedIn
 
         //LoggedIn
         public ActionResult LoggedIn()
@@ -69,6 +73,18 @@ namespace SiteVarzea.Controllers
             }
             return View(mORADOR);
         }
+        #endregion
+
+        #region Logout
+        //Logout
+        public ActionResult Logout()
+        {
+            Session["id_morador"] = null;
+            Response.Redirect("../");
+            return null;
+        }
+        #endregion
+
 
         // GET: ContaDetails/5
         public ActionResult Details(int? id)
@@ -85,6 +101,7 @@ namespace SiteVarzea.Controllers
             return View(mORADOR);
         }
 
+        #region Create  / Registrar
         // GET: ContaCreate
         public ActionResult Create()
         {
@@ -116,14 +133,7 @@ namespace SiteVarzea.Controllers
 
             return RedirectToAction("Login");
         }
-
-        //Logout
-        public ActionResult Logout()
-        {
-            Session["id_morador"] = null;
-            Response.Redirect("../");
-            return null;
-        }
+        #endregion
 
         // GET: ContaEdit/5
         public ActionResult Edit(int? id)

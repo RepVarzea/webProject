@@ -31,10 +31,12 @@ namespace SiteVarzea.Models
         public string descricao { get; set; }
 
         [Required(ErrorMessage = "Favor informar a data.")]
-        public Nullable<System.DateTime> data { get; set; }
-
-        [Required(ErrorMessage = "Favor informar o valor gasto")]
-        public Nullable<decimal> valor { get; set; }
+        [DataType(DataType.DateTime)]
+        public DateTime data { get; set; }
+        
+        [Required(ErrorMessage = "Favor informar o valor gasto.")]
+        [RegularExpression(@"^[a-zA-Z0-9]*$",ErrorMessage = "Insira um valor válido.")]
+        public float valor { get; set; }
     
         public virtual MORADOR MORADOR { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

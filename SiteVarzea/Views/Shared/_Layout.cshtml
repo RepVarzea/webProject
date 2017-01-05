@@ -20,15 +20,19 @@
                 @Html.ActionLink("Rep. Várzea", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav" style="width:90%">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Eventos", "About", "Home")</li>
-                    <li>@Html.ActionLink("Extras", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Moradores", "Moradores", "MORADORs")</li>
                     <li>@Html.ActionLink("Fale conosco", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Sobre nós", "About", "Home")</li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
                     @if (Session["id_morador"] != null)
                     {
+                        <li>@Html.ActionLink("Extras", "Contact", "Contas")</li>
                         <li>@Html.ActionLink("Sair", "Logout", "MORADORs")</li>
                     }
                     else

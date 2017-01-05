@@ -4144,6 +4144,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   }
   .navbar-collapse .navbar-text:last-child {
     margin-right: 0;
+    float:right;
   }
 }
 
@@ -4245,6 +4246,9 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 .navbar-nav {
   margin: 7.5px -15px;
+}
+.navbar-nav li:last-child{
+    float:right;
 }
 
 .navbar-nav > li > a {
