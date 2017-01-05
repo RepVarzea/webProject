@@ -13,6 +13,7 @@ namespace SiteVarzea.Controllers
     public class ContasController : Controller
     {
         private RepVarzeaEntities db = new RepVarzeaEntities();
+        private Functions verifica = new Functions();
 
         // GET: Contas
         public ActionResult Index()
@@ -39,8 +40,9 @@ namespace SiteVarzea.Controllers
         // GET: Contas/Create
         public ActionResult Create()
         {
-            if (Session["id_morador"] == null)
-                return RedirectToAction("Error","Home",new { message = "Você precisa estar logado para ver essa página." } );
+            if(!verifica.possuiPermissao(Session["id_morador"].ToString()))
+                return Redirect("~/Error/Erro401");
+
             ViewBag.id_gasto = new SelectList(db.MORADOR, "id_morador", "nome");
             return View();
         }

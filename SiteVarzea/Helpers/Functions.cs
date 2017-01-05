@@ -27,5 +27,15 @@ namespace SiteVarzea.Controllers
 
             return string.Empty;
         }
+
+        public bool possuiPermissao(string IDMorador)
+        {
+            MORADOR morador = db.MORADOR.Where(u => u.id_morador.ToString() == IDMorador).FirstOrDefault();
+
+            if (morador == null || morador.ativo != 1)
+                return false;
+            else
+                return true;
+        }
     }
 }

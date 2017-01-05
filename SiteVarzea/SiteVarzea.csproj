@@ -159,6 +159,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ContasController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MORADORsController.cs" />
     <Compile Include="Helpers\Functions.cs" />
@@ -194,6 +195,8 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Imagens\401.png" />
+    <Content Include="Content\Imagens\404.jpg" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -304,7 +307,8 @@
     <Content Include="Views\Contas\Details.cshtml" />
     <Content Include="Views\Contas\Edit.cshtml" />
     <Content Include="Views\Contas\Index.cshtml" />
-    <Content Include="Views\Home\Error.cshtml" />
+    <Content Include="Views\Error\Erro404.cshtml" />
+    <Content Include="Views\Error\Erro401.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
