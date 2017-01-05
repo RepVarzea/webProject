@@ -24,6 +24,14 @@ namespace SiteVarzea.Controllers
             return View(mORADOR.ToList());
         }
 
+        #region MORADORES
+        public ActionResult Moradores()
+        {
+            var mORADOR = db.MORADOR.Include(m => m.GASTO);
+            return View(mORADOR.ToList().OrderByDescending(c => c.ativo).ThenBy(a => a.ano));
+        }
+        #endregion
+
         //Login
         public ActionResult Login()
         {
@@ -107,6 +115,14 @@ namespace SiteVarzea.Controllers
             Session["inserido"] = "Inserido com sucesso!";
 
             return RedirectToAction("Login");
+        }
+
+        //Logout
+        public ActionResult Logout()
+        {
+            Session["id_morador"] = null;
+            Response.Redirect("../");
+            return null;
         }
 
         // GET: ContaEdit/5
