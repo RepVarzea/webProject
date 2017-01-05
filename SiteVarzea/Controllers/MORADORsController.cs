@@ -47,12 +47,12 @@ namespace SiteVarzea.Controllers
             {
                 Session["id_morador"] = usr.id_morador;
                 Session["nome"] = usr.nome.ToString();
+                if (verifica.podeRegistar(user))
+                    Session["todos"] = true;
                 return RedirectToAction("LoggedIn");
             }
-            else
-            {
-                ModelState.AddModelError("", "Username or password is wrong.");
-            }
+            ModelState.AddModelError("", "Username or password is wrong.");
+            
             return View();
         }
         #endregion
@@ -85,23 +85,7 @@ namespace SiteVarzea.Controllers
         }
         #endregion
 
-
-        // GET: ContaDetails/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            MORADOR mORADOR = db.MORADOR.Find(id);
-            if (mORADOR == null)
-            {
-                return HttpNotFound();
-            }
-            return View(mORADOR);
-        }
-
-        #region Create  / Registrar
+        #region Registrar
         // GET: ContaCreate
         public ActionResult Create()
         {
@@ -122,78 +106,25 @@ namespace SiteVarzea.Controllers
                 string check = verifica.existeLogin(USER);
                 if (!string.IsNullOrEmpty(check))
                 {
-                    ModelState.AddModelError("",check + " já cadastrado.");
+                    ModelState.AddModelError("", check + " já cadastrado.");
                     return View();
                 }
 
-                db.MORADOR.Add(USER);
-                db.SaveChanges();
+                if (verifica.podeRegistar(USER))
+                {
+                    db.MORADOR.Add(USER);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    return Redirect("~/Error/Erro401");
+                }
             }
             Session["inserido"] = "Inserido com sucesso!";
 
             return RedirectToAction("Login");
         }
         #endregion
-
-        // GET: ContaEdit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            MORADOR mORADOR = db.MORADOR.Find(id);
-            if (mORADOR == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.id_morador = new SelectList(db.GASTO, "id_gasto", "descricao", mORADOR.id_morador);
-            return View(mORADOR);
-        }
-
-        // POST: ContaEdit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_morador,nome,ano,email,ativo,login,senha")] MORADOR mORADOR)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(mORADOR).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.id_morador = new SelectList(db.GASTO, "id_gasto", "descricao", mORADOR.id_morador);
-            return View(mORADOR);
-        }
-
-        // GET: ContaDelete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            MORADOR mORADOR = db.MORADOR.Find(id);
-            if (mORADOR == null)
-            {
-                return HttpNotFound();
-            }
-            return View(mORADOR);
-        }
-
-        // POST: ContaDelete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            MORADOR mORADOR = db.MORADOR.Find(id);
-            db.MORADOR.Remove(mORADOR);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

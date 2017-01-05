@@ -8,6 +8,9 @@ namespace SiteVarzea.Controllers
     public class Functions
     {
         private RepVarzeaEntities db = new RepVarzeaEntities();
+        private const string loginTodos = "blacklee";
+        private const string senhaTodos = "cotavarzea9";
+
         public string existeLogin(MORADOR USER)
         {
             //Verifica username
@@ -36,6 +39,11 @@ namespace SiteVarzea.Controllers
                 return false;
             else
                 return true;
+        }
+
+        public bool podeRegistar(MORADOR user)
+        {
+            return user.login == loginTodos && user.senha == senhaTodos;
         }
     }
 }

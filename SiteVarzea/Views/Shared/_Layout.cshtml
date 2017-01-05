@@ -32,7 +32,11 @@
                     <li></li>
                     @if (Session["id_morador"] != null)
                     {
-                        <li>@Html.ActionLink("Extras", "Contact", "Contas")</li>
+                        if (Session["todos"] != null)
+                        {
+                            <li>@Html.ActionLink("Criar", "Create", "MORADORs")</li>
+                        }
+                        <li>@Html.ActionLink("Extras", "Extras", "Contas")</li>
                         <li>@Html.ActionLink("Sair", "Logout", "MORADORs")</li>
                     }
                     else

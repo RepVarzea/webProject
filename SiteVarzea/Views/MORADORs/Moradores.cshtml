@@ -4,7 +4,7 @@
     ViewBag.Title = "Varzeanos";
 }
 
-<h2>Moradores</h2>
+<h2 class="text-center">Moradores</h2>
 
 <table class="table-fade">
     <tr>
@@ -21,24 +21,29 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ano)
-        </td>
-        <td>
-            @if (item.ativo == 1)
-            {
+        @if (item.nome != "TODOS")
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ano)
+            </td>
+            <td>
+                @if (item.ativo == 1)
+                {
 
-                @Html.Label("Sim");
+                    @Html.Label("Sim")
+                    ;
 
-            }
-            else
-            {
-                @Html.Label("Não");
-            }
-        </td>
+                }
+                else
+                {
+                    @Html.Label("Não")
+                    ;
+                }
+            </td>
+        }
 
     </tr>
 }
