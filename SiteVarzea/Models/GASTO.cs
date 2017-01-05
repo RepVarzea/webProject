@@ -12,7 +12,7 @@ namespace SiteVarzea.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    
+
     public partial class GASTO
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,7 +20,7 @@ namespace SiteVarzea.Models
         {
             this.GASTO_MORADOR = new HashSet<GASTO_MORADOR>();
         }
-    
+
         [Key]
         public int id_gasto { get; set; }
 
@@ -30,14 +30,15 @@ namespace SiteVarzea.Models
         [Required(ErrorMessage = "Favor informar a descrição.")]
         public string descricao { get; set; }
 
+        [DataType(DataType.Date)]
         [Required(ErrorMessage = "Favor informar a data.")]
-        [DataType(DataType.DateTime)]
-        public Nullable<DateTime> data { get; set; }
-        
-        [Required(ErrorMessage = "Favor informar o valor gasto.")]
-        [RegularExpression(@"^[a-zA-Z0-9]*$",ErrorMessage = "Insira um valor válido.")]
-        public Nullable<decimal> valor { get; set; }
-    
+        public DateTime? data { get; set; }
+
+        public virtual string nomeMorador { get; set; }
+
+        [Required(ErrorMessage = "Favor informar o valor gasto")]
+        public double? valor { get; set; }
+
         public virtual MORADOR MORADOR { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GASTO_MORADOR> GASTO_MORADOR { get; set; }

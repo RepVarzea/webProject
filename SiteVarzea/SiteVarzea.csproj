@@ -176,11 +176,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBVarzea.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DBVarzea.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBVarzea.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\GASTO.cs">
       <DependentUpon>DBVarzea.tt</DependentUpon>
     </Compile>
@@ -299,12 +294,10 @@
     <Content Include="Views\MORADORs\Logout.cshtml" />
     <Content Include="Views\MORADORs\Moradores.cshtml" />
     <Content Include="Views\Contas\Create.cshtml" />
-    <Content Include="Views\Contas\Delete.cshtml" />
-    <Content Include="Views\Contas\Details.cshtml" />
-    <Content Include="Views\Contas\Edit.cshtml" />
     <Content Include="Views\Contas\Index.cshtml" />
     <Content Include="Views\Error\Erro404.cshtml" />
     <Content Include="Views\Error\Erro401.cshtml" />
+    <Content Include="Views\Contas\Extras.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

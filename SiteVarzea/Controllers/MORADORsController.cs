@@ -125,6 +125,7 @@ namespace SiteVarzea.Controllers
             return RedirectToAction("Login");
         }
         #endregion
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

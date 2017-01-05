@@ -12,12 +12,12 @@ namespace SiteVarzea.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    
+
     public partial class GASTO_MORADOR
     {
         [Key]
         public int id_gasto_morador { get; set; }
-    
+
         public virtual GASTO GASTO { get; set; }
 
         [Required(ErrorMessage = "Favor informar a quem cobrar")]

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using SiteVarzea.Models;
+// ReSharper disable All
 namespace SiteVarzea.Controllers
 {
     public class Functions
@@ -33,12 +34,12 @@ namespace SiteVarzea.Controllers
 
         public bool possuiPermissao(string IDMorador)
         {
-            MORADOR morador = db.MORADOR.Where(u => u.id_morador.ToString() == IDMorador).FirstOrDefault();
-
-            if (morador == null || morador.ativo != 1)
+            if (string.IsNullOrEmpty(IDMorador))
                 return false;
-            else
-                return true;
+
+            MORADOR morador = db.MORADOR.FirstOrDefault(u => u.id_morador.ToString() == IDMorador);
+
+            return morador != null && morador.ativo == 1;
         }
 
         public bool podeRegistar(MORADOR user)

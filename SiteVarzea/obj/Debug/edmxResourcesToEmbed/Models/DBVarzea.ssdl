@@ -8,7 +8,7 @@
     <Property Name="id_morador" Type="int" Nullable="false" />
     <Property Name="descricao" Type="varchar" MaxLength="250" />
     <Property Name="data" Type="datetime" />
-    <Property Name="valor" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="valor" Type="float" />
   </EntityType>
   <EntityType Name="GASTO_MORADOR">
     <Key>

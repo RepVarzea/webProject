@@ -13,7 +13,7 @@
           <Property Name="id_morador" Type="int" Nullable="false" />
           <Property Name="descricao" Type="varchar" MaxLength="250" />
           <Property Name="data" Type="datetime" />
-          <Property Name="valor" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="valor" Type="float"  />
         </EntityType>
         <EntityType Name="GASTO_MORADOR">
           <Key>
@@ -101,7 +101,7 @@
           <Property Name="id_morador" Type="Int32" Nullable="false" />
           <Property Name="descricao" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="data" Type="DateTime" />
-          <Property Name="valor" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="valor" Type="Double" />
           <NavigationProperty Name="MORADOR" Relationship="Self.FK_GASTO_MORADOR" FromRole="GASTO" ToRole="MORADOR" />
           <NavigationProperty Name="GASTO_MORADOR" Relationship="Self.FK_GASTOMORADOR_GASTO" FromRole="GASTO" ToRole="GASTO_MORADOR" />
         </EntityType>
