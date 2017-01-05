@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using SiteVarzea.Models;
 using System.Threading;
+using System.Web.Optimization;
 
 namespace SiteVarzea.Controllers
 {
@@ -103,10 +104,8 @@ namespace SiteVarzea.Controllers
                 db.MORADOR.Add(USER);
                 db.SaveChanges();
             }
+            Session["inserido"] = "Inserido com sucesso!";
 
-            ViewBag.id_morador = new SelectList(db.GASTO, "id_gasto", "descricao", USER.id_morador);
-            ViewBag.Message = USER.nome + "/" + USER.ano + " " + "registrado com sucesso.";
-            Thread.Sleep(3000);
             return RedirectToAction("Login");
         }
 
