@@ -54,3 +54,4 @@ D:\projetoscaio\SiteVarzea\SiteVarzea\bin\Antlr3.Runtime.pdb
 D:\projetoscaio\SiteVarzea\SiteVarzea\bin\Newtonsoft.Json.xml
 D:\projetoscaio\SiteVarzea\SiteVarzea\obj\Debug\SiteVarzea.dll
 D:\projetoscaio\SiteVarzea\SiteVarzea\obj\Debug\SiteVarzea.pdb
+D:\projetoscaio\SiteVarzea\SiteVarzea\obj\Debug\SiteVarzea.csprojResolveAssemblyReference.cache

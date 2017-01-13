@@ -9,7 +9,8 @@ using System.Web;
 using System.Web.Mvc;
 using SiteVarzea.Models;
 using System.Configuration;
-// ReSharper disable All
+using SiteVarzea.Classes;
+
 
 namespace SiteVarzea.Controllers
 {
@@ -43,18 +44,20 @@ namespace SiteVarzea.Controllers
                     SqlDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
-                        var gasto = new GASTO();
-                        gasto.data = DateTime.Parse(dr["data"].ToString());
-                        gasto.descricao = dr["descricao"].ToString();
-                        gasto.valor = Double.Parse(dr["valor"].ToString());
-                        gasto.nomeMorador = dr["nome"].ToString();
-                        gasto.id_gasto = Convert.ToInt32(dr["id_gasto"].ToString());
+                        var gasto = new GASTO
+                        {
+                            data = DateTime.Parse(dr["data"].ToString()),
+                            descricao = dr["descricao"].ToString(),
+                            valor = double.Parse(dr["valor"].ToString()),
+                            nomeMorador = dr["nome"].ToString(),
+                            id_gasto = Convert.ToInt32(dr["id_gasto"].ToString())
+                        };
                         model.Add(gasto);
                     }
                 }
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 ModelState.AddModelError("","Erro!");
             }
@@ -64,13 +67,16 @@ namespace SiteVarzea.Controllers
 
         public ActionResult Novo()
         {
+            CollectionVM collectionVM = new CollectionVM();
+            List<ChoiceViewModel> choiceList = db.MORADOR.Where(user => user.ativo == 1).OrderBy(n => n.nome).Select(user => new ChoiceViewModel() {SNo = user.id_morador, Text = user.nome}).ToList();
 
-            SelectList lista = new SelectList(db.MORADOR.Where(u => u.ativo == 1).OrderBy(n => n.nome).ToList(),
-                "id_morador", "nome");
+            collectionVM.ChoicesVM = choiceList;
+            collectionVM.SelectedChoices = new List<long>();
+            ViewBag.MoradorList = collectionVM;
 
-            ViewBag.CategoryList = lista;
             return View();
         }
+
 
         // GET: Contas/Create
         public ActionResult Create()

@@ -9,12 +9,13 @@ using System.Web.Mvc;
 using SiteVarzea.Models;
 using System.Threading;
 using System.Web.Optimization;
+using SiteVarzea.Classes;
 
 namespace SiteVarzea.Controllers
 {
     public class MORADORsController : Controller
     {
-        private RepVarzeaEntities db = new RepVarzeaEntities();
+        private readonly RepVarzeaEntities db = new RepVarzeaEntities();
         private Functions verifica = new Functions();
 
         // GET: MORADORs
