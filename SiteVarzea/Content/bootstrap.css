@@ -6920,3 +6920,12 @@ td.visible-print {
 	box-shadow: inset -1px -1px 0 #fff;
 }	
 
+.currency {
+  padding-left:12px;
+}
+
+.currency-symbol {
+  position:absolute;
+  padding: 2px 5px;
+}
+

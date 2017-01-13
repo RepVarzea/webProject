@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Microsoft.ApplicationInsights.Extensibility.Implementation;
 using SiteVarzea.Models;
 
 namespace SiteVarzea.Classes { 
@@ -48,6 +49,22 @@ namespace SiteVarzea.Classes {
         {
             MORADOR admin = db.MORADOR.FirstOrDefault(u => u.id_morador == 24);
             return admin;
+        }
+
+        public string getDevedores(int idGasto)
+        {
+            string Devedores = "";
+            foreach (var GM in db.GASTO_MORADOR.Where(u => u.GASTO.id_gasto == idGasto))
+            {
+                Devedores += GM.MORADOR.nome + ", ";
+            }
+            if (Devedores.Length <= 2)
+                return Devedores;
+            //Gambix para retirar última vírgula
+            char[] array = Devedores.ToCharArray();
+            array[array.Length - 2] = Convert.ToChar("\0");
+            Devedores = new string(array);
+            return Devedores;
         }
     }
 }

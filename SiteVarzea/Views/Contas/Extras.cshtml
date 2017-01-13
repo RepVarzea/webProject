@@ -15,6 +15,7 @@
             <th>Quem gastou</th>
             <th>Descricao</th>
             <th>Valor</th>
+            <th>Devedores</th>
         </tr>
         @foreach (var gasto in Model)
         {
@@ -23,6 +24,7 @@
                 <td>@gasto.nomeMorador</td>
                 <td>@gasto.descricao</td>
                 <td>@gasto.valor</td>
+                <td>@gasto.nomeDevedores</td>
             </tr>
         }
     </table>

@@ -17,7 +17,7 @@ namespace SiteVarzea.Controllers
     public class ContasController : Controller
     {
         private RepVarzeaEntities db = new RepVarzeaEntities();
-        private Functions verifica = new Functions();
+        private Functions functions = new Functions();
 
         // GET: Contas
         public ActionResult Index()
@@ -50,7 +50,8 @@ namespace SiteVarzea.Controllers
                             descricao = dr["descricao"].ToString(),
                             valor = double.Parse(dr["valor"].ToString()),
                             nomeMorador = dr["nome"].ToString(),
-                            id_gasto = Convert.ToInt32(dr["id_gasto"].ToString())
+                            id_gasto = (int)dr["id_gasto"],
+                            nomeDevedores = functions.getDevedores((int)dr["id_gasto"])
                         };
                         model.Add(gasto);
                     }
@@ -80,9 +81,12 @@ namespace SiteVarzea.Controllers
         [HttpPost]
         public ActionResult Novo(CollectionVM collectionVM, GASTO gASTO)
         {
+            if (string.IsNullOrEmpty(Session["id_morador"].ToString()))
+                return Redirect("~/Error/Erro401");
+
             var selecionados = collectionVM.SelectedChoices;
-            //int idPagou = (int)Session["id_morador"];
-            int idPagou = 25;
+            int idPagou = (int)Session["id_morador"];
+
             //Cria novo gasto
             GASTO gasto = new GASTO
             {
@@ -105,37 +109,8 @@ namespace SiteVarzea.Controllers
                 db.GASTO_MORADOR.Add(gm);
                 db.SaveChanges();
             }
-            return View();
+            return RedirectToAction("Extras");
         }
-
-        // GET: Contas/Create
-        public ActionResult Create()
-        {
-            if(!verifica.possuiPermissao(Session["id_morador"].ToString()))
-                return Redirect("~/Error/Erro401");
-
-            ViewBag.id_gasto = new SelectList(db.MORADOR, "id_morador", "nome");
-            return View();
-        }
-
-        // POST: Contas/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_gasto,id_morador,descricao,data,valor")] GASTO gASTO)
-        {
-            if (ModelState.IsValid)
-            {
-                db.GASTO.Add(gASTO);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.id_gasto = new SelectList(db.MORADOR, "id_morador", "nome", gASTO.id_gasto);
-            return View(gASTO);
-        }
-
 
         protected override void Dispose(bool disposing)
         {

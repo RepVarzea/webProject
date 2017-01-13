@@ -7,12 +7,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
+
 namespace SiteVarzea.Models
 {
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-
+    
     public partial class GASTO
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -34,10 +36,13 @@ namespace SiteVarzea.Models
         [Required(ErrorMessage = "Favor informar a data.")]
         public DateTime? data { get; set; }
 
+        [Required(ErrorMessage = ("Favor inserir o valor"))]
+        [UIHint("Currency")]
+        public double valor { get; set; }
+
         public virtual string nomeMorador { get; set; }
 
-        [Required(ErrorMessage = "Favor informar o valor gasto")]
-        public double? valor { get; set; }
+        public virtual string nomeDevedores { get; set; }
 
         public virtual MORADOR MORADOR { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

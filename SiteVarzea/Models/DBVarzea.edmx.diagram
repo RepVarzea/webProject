@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="a5db8b557ccd48af89b806bf9266faf3" Name="Diagram1">
-        <EntityTypeShape EntityType="RepVarzeaModel.GASTO" Width="1.5" PointX="5.125" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RepVarzeaModel.GASTO" Width="1.5" PointX="5.5" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="RepVarzeaModel.GASTO_MORADOR" Width="1.5" PointX="3.375" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="RepVarzeaModel.MORADOR" Width="1.5" PointX="0.875" PointY="0.875" IsExpanded="true" />
         <AssociationConnector ManuallyRouted="false" Association="RepVarzeaModel.FK_GASTO_MORADOR" />

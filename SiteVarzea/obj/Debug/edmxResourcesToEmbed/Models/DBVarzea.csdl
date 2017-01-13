@@ -36,13 +36,13 @@
   </EntityType>
   <Association Name="FK_GASTO_MORADOR">
     <End Type="Self.MORADOR" Multiplicity="1" Role="MORADOR" />
-    <End Type="Self.GASTO" Multiplicity="0..1" Role="GASTO" />
+    <End Type="Self.GASTO" Multiplicity="*" Role="GASTO" />
     <ReferentialConstraint>
       <Principal Role="MORADOR">
         <PropertyRef Name="id_morador" />
       </Principal>
       <Dependent Role="GASTO">
-        <PropertyRef Name="id_gasto" />
+        <PropertyRef Name="id_morador" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

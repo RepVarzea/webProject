@@ -6,16 +6,19 @@
 //     Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-using System.ComponentModel.DataAnnotations;
+
 namespace SiteVarzea.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    
     public partial class MORADOR
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public MORADOR()
         {
+            this.GASTO = new HashSet<GASTO>();
             this.GASTO_MORADOR = new HashSet<GASTO_MORADOR>();
         }
 
@@ -29,7 +32,7 @@ namespace SiteVarzea.Models
         public int ano { get; set; }
 
         [Required(ErrorMessage = "Favor inserir o email.")]
-        [StringLength(150,ErrorMessage = "Email muito grande.")]
+        [StringLength(150, ErrorMessage = "Email muito grande.")]
         [DataType(DataType.EmailAddress)]
         public string email { get; set; }
 
@@ -38,7 +41,7 @@ namespace SiteVarzea.Models
         public Nullable<int> ativo { get; set; }
 
         [Required(ErrorMessage = "Favor inserir o Login.")]
-        [StringLength(20,ErrorMessage = "Login muito grande.")]
+        [StringLength(20, ErrorMessage = "Login muito grande.")]
         public string login { get; set; }
 
         [Required(ErrorMessage = "Favor inserir a senha.")]
@@ -51,7 +54,9 @@ namespace SiteVarzea.Models
         [DataType(DataType.Password)]
         public virtual string confirmaSenha { get; set; }
 
-        public virtual GASTO GASTO { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GASTO> GASTO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GASTO_MORADOR> GASTO_MORADOR { get; set; }
     }
