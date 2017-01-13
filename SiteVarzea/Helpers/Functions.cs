@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using SiteVarzea.Models;
-// ReSharper disable All
 namespace SiteVarzea.Controllers
 {
     public class Functions
     {
-        private RepVarzeaEntities db = new RepVarzeaEntities();
-        private const string loginTodos = "blacklee";
-        private const string senhaTodos = "cotavarzea9";
+        private readonly RepVarzeaEntities db = new RepVarzeaEntities();
 
         public string existeLogin(MORADOR USER)
         {
@@ -44,7 +41,13 @@ namespace SiteVarzea.Controllers
 
         public bool podeRegistar(MORADOR user)
         {
-            return user.login == loginTodos && user.senha == senhaTodos;
+            return user.login == getLoginAdmin().login && user.senha == getLoginAdmin().senha;
+        }
+
+        private MORADOR getLoginAdmin()
+        {
+            MORADOR admin = db.MORADOR.FirstOrDefault(u => u.id_morador == 24);
+            return admin;
         }
     }
 }

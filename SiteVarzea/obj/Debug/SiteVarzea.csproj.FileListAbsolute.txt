@@ -1,15 +1,15 @@
+D:\projetoscaio\SiteVarzea\SiteVarzea\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\projetoscaio\SiteVarzea\SiteVarzea\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\projetoscaio\SiteVarzea\SiteVarzea\bin\roslyn\System.Collections.Immutable.dll
+D:\projetoscaio\SiteVarzea\SiteVarzea\bin\roslyn\System.Reflection.Metadata.dll
+D:\projetoscaio\SiteVarzea\SiteVarzea\bin\roslyn\VBCSCompiler.exe
 D:\projetoscaio\SiteVarzea\SiteVarzea\bin\ApplicationInsights.config
 D:\projetoscaio\SiteVarzea\SiteVarzea\bin\roslyn\csc.exe
 D:\projetoscaio\SiteVarzea\SiteVarzea\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-D:\projetoscaio\SiteVarzea\SiteVarzea\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-D:\projetoscaio\SiteVarzea\SiteVarzea\bin\roslyn\Microsoft.CodeAnalysis.dll
 D:\projetoscaio\SiteVarzea\SiteVarzea\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
 D:\projetoscaio\SiteVarzea\SiteVarzea\bin\roslyn\Microsoft.CSharp.Core.targets
 D:\projetoscaio\SiteVarzea\SiteVarzea\bin\roslyn\Microsoft.VisualBasic.Core.targets
-D:\projetoscaio\SiteVarzea\SiteVarzea\bin\roslyn\System.Collections.Immutable.dll
-D:\projetoscaio\SiteVarzea\SiteVarzea\bin\roslyn\System.Reflection.Metadata.dll
 D:\projetoscaio\SiteVarzea\SiteVarzea\bin\roslyn\vbc.exe
-D:\projetoscaio\SiteVarzea\SiteVarzea\bin\roslyn\VBCSCompiler.exe
 D:\projetoscaio\SiteVarzea\SiteVarzea\bin\roslyn\VBCSCompiler.exe.config
 D:\projetoscaio\SiteVarzea\SiteVarzea\bin\SiteVarzea.dll.config
 D:\projetoscaio\SiteVarzea\SiteVarzea\bin\SiteVarzea.dll
@@ -54,4 +54,3 @@ D:\projetoscaio\SiteVarzea\SiteVarzea\bin\Antlr3.Runtime.pdb
 D:\projetoscaio\SiteVarzea\SiteVarzea\bin\Newtonsoft.Json.xml
 D:\projetoscaio\SiteVarzea\SiteVarzea\obj\Debug\SiteVarzea.dll
 D:\projetoscaio\SiteVarzea\SiteVarzea\obj\Debug\SiteVarzea.pdb
-D:\projetoscaio\SiteVarzea\SiteVarzea\obj\Debug\SiteVarzea.csprojResolveAssemblyReference.cache

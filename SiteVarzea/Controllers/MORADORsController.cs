@@ -87,7 +87,7 @@ namespace SiteVarzea.Controllers
 
         #region Registrar
         // GET: ContaCreate
-        public ActionResult Create()
+        public ActionResult Registrar()
         {
             ViewBag.id_morador = new SelectList(db.GASTO, "id_gasto", "descricao");
             return View();
@@ -98,7 +98,7 @@ namespace SiteVarzea.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_morador,nome,ano,email,aux,ativo,login,senha,confirmaSenha")] MORADOR USER)
+        public ActionResult Registrar([Bind(Include = "id_morador,nome,ano,email,aux,ativo,login,senha,confirmaSenha")] MORADOR USER)
         {
             if (ModelState.IsValid)
             {

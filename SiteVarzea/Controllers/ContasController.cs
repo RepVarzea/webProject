@@ -64,6 +64,7 @@ namespace SiteVarzea.Controllers
 
         public ActionResult Novo()
         {
+
             SelectList lista = new SelectList(db.MORADOR.Where(u => u.ativo == 1).OrderBy(n => n.nome).ToList(),
                 "id_morador", "nome");
 
