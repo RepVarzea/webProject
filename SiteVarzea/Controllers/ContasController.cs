@@ -77,6 +77,36 @@ namespace SiteVarzea.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Novo(CollectionVM collectionVM, GASTO gASTO)
+        {
+            var selecionados = collectionVM.SelectedChoices;
+            //int idPagou = (int)Session["id_morador"];
+            int idPagou = 25;
+            //Cria novo gasto
+            GASTO gasto = new GASTO
+            {
+                MORADOR = db.MORADOR.FirstOrDefault(u => u.id_morador == idPagou),
+                id_morador = idPagou ,
+                valor = gASTO.valor,
+                descricao = gASTO.descricao,
+                data = DateTime.Now
+            };
+            db.GASTO.Add(gasto);
+            db.SaveChanges();
+            foreach (var id in selecionados)
+            {
+                int id_morador = (int)id;
+                GASTO_MORADOR gm = new GASTO_MORADOR
+                {
+                    MORADOR = db.MORADOR.FirstOrDefault(u => u.id_morador == id_morador),
+                    GASTO = db.GASTO.FirstOrDefault(u => u.id_gasto == gasto.id_gasto )
+                };
+                db.GASTO_MORADOR.Add(gm);
+                db.SaveChanges();
+            }
+            return View();
+        }
 
         // GET: Contas/Create
         public ActionResult Create()

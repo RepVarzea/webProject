@@ -43,12 +43,13 @@ namespace SiteVarzea.Controllers
         [HttpPost]
         public ActionResult Login(MORADOR user)
         {
-            var usr = db.MORADOR.Where(u => u.login == user.login && u.senha == user.senha).FirstOrDefault();
+            var usr = db.MORADOR.FirstOrDefault(u => u.login == user.login && u.senha == user.senha);
             if(usr != null)
             {
                 Session["id_morador"] = usr.id_morador;
-                Session["nome"] = usr.nome.ToString();
-                if (verifica.podeRegistar(user))
+                Session["nome"] = usr.nome;
+                //Habilita o botão "Novo morador" no menu
+                if (verifica.podeRegistar(usr.id_morador))
                     Session["todos"] = true;
                 return RedirectToAction("LoggedIn");
             }
@@ -111,7 +112,7 @@ namespace SiteVarzea.Controllers
                     return View();
                 }
 
-                if (verifica.podeRegistar(USER))
+                if (verifica.podeRegistar((int)Session["id_morador"]))
                 {
                     db.MORADOR.Add(USER);
                     db.SaveChanges();
@@ -121,6 +122,7 @@ namespace SiteVarzea.Controllers
                     return Redirect("~/Error/Erro401");
                 }
             }
+            Session["todos"] = null;
             Session["inserido"] = "Inserido com sucesso!";
 
             return RedirectToAction("Login");

@@ -39,9 +39,9 @@ namespace SiteVarzea.Classes {
             return morador != null && morador.ativo == 1;
         }
 
-        public bool podeRegistar(MORADOR user)
+        public bool podeRegistar(int iduser)
         {
-            return user.login == getLoginAdmin().login && user.senha == getLoginAdmin().senha;
+            return iduser == getLoginAdmin().id_morador;
         }
 
         private MORADOR getLoginAdmin()
