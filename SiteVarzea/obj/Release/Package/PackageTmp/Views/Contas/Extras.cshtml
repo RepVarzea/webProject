@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Extras";
+}
+
+@model List<SiteVarzea.Models.GASTO>
+
+<h1 align="center">Extras</h1>
+
+
+<div style="display: inline-block; text-align: right; margin-left: 15%">
+    <table class="table-fade">
+        <tr>
+            <th>Data</th>
+            <th>Quem gastou</th>
+            <th>Descricao</th>
+            <th>Valor</th>
+            <th>Devedores</th>
+        </tr>
+        @foreach (var gasto in Model)
+        {
+            <tr>
+                <td>@($"{@gasto.data:dd/mm/yyyy}")</td>
+                <td>@gasto.nomeMorador</td>
+                <td>@gasto.descricao</td>
+                <td>@($"{@gasto.valor:c}")</td>
+                <td>@gasto.nomeDevedores</td>
+            </tr>
+        }
+    </table>
+    <input type="button" value="Criar" class="btn btn-default" onclick="location.href = '@Url.Action("Novo", "Contas")'"/>
+</div>

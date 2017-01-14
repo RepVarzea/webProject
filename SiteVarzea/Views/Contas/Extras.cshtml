@@ -20,10 +20,10 @@
         @foreach (var gasto in Model)
         {
             <tr>
-                <td>@gasto.data</td>
+                <td>@($"{@gasto.data:dd/mm/yyyy}")</td>
                 <td>@gasto.nomeMorador</td>
                 <td>@gasto.descricao</td>
-                <td>@gasto.valor</td>
+                <td>@($"{@gasto.valor:c}")</td>
                 <td>@gasto.nomeDevedores</td>
             </tr>
         }

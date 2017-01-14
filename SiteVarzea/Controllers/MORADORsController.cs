@@ -51,7 +51,7 @@ namespace SiteVarzea.Controllers
                 //Habilita o botão "Novo morador" no menu
                 if (verifica.podeRegistar(usr.id_morador))
                     Session["todos"] = true;
-                return RedirectToAction("LoggedIn");
+                return Redirect("~/Contas/ExtrasPessoal");
             }
             ModelState.AddModelError("", "Username or password is wrong.");
             

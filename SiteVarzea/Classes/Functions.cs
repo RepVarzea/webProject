@@ -30,12 +30,13 @@ namespace SiteVarzea.Classes {
             return string.Empty;
         }
 
-        public bool possuiPermissao(string IDMorador)
+        public bool possuiPermissao(Object id)
         {
-            if (string.IsNullOrEmpty(IDMorador))
+            if (id == null)
                 return false;
 
-            MORADOR morador = db.MORADOR.FirstOrDefault(u => u.id_morador.ToString() == IDMorador);
+            string idMorador = id.ToString();
+            MORADOR morador = db.MORADOR.FirstOrDefault(u => u.id_morador.ToString() == idMorador);
 
             return morador != null && morador.ativo == 1;
         }
@@ -47,7 +48,7 @@ namespace SiteVarzea.Classes {
 
         private MORADOR getLoginAdmin()
         {
-            MORADOR admin = db.MORADOR.FirstOrDefault(u => u.id_morador == 24);
+            MORADOR admin = db.MORADOR.FirstOrDefault(u => u.id_morador == 1);
             return admin;
         }
 

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAWxzb69BevUKwH0MBJOQxzgAAAAACAAAAAAAQZgAAAAEAACAAAAAJEV9egH85VgSVoIArdTBVT8Qtc7RMD0M+3EsX67UWoAAAAAAOgAAAAAIAACAAAADhp+ml6hFJjYx3PH/vmRQb2OwUiWPB0LGiAfzpKlxapYAAAAAS2gyKU3vDwRG0yQ5gOE5RK67ce6OCnIoeXS7KMWm9Q8aIO2QmW6gFu6gk4uFrFtvf7mQz+lVECV1ExyN5RSVU7xPM7mrX23/VKGMS4Ol8wqRNUfIQsM8Yma590CyxDkj7sqLEvR0MtyFhHuBY0l6tla1B1lJJ/iKC+PUmE+eamEAAAAANCvMAFxbpTTXlzKAy9SSxDef7WOkY83oSId7l6ox8Ldmgdq1z7wUZHMsXDaxG7SVwFXDaLzsdaCirCZnR1YHP</EncryptedPassword>
+    <_PublishTargetUrl>ftp://ftp.gear.host/http://repvarzea.gear.host/</_PublishTargetUrl>
+  </PropertyGroup>
+</Project>

@@ -260,6 +260,9 @@
     <Content Include="Models\DBVarzea.edmx.diagram">
       <DependentUpon>DBVarzea.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\repvarzea - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\repvarzea - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\RepVarzea.pubxml" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\checkAll.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
@@ -295,12 +298,11 @@
     <Content Include="Views\MORADORs\LoggedIn.cshtml" />
     <Content Include="Views\MORADORs\Logout.cshtml" />
     <Content Include="Views\MORADORs\Moradores.cshtml" />
-    <Content Include="Views\Contas\Create.cshtml" />
-    <Content Include="Views\Contas\Index.cshtml" />
     <Content Include="Views\Error\Erro404.cshtml" />
     <Content Include="Views\Error\Erro401.cshtml" />
     <Content Include="Views\Contas\Extras.cshtml" />
     <Content Include="Views\Contas\Novo.cshtml" />
+    <Content Include="Views\Contas\ExtrasPessoal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

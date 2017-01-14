@@ -1,0 +1,71 @@
+﻿@model SiteVarzea.Models.MORADOR
+
+@{
+    ViewBag.Title = "LoggedIn";
+}
+
+<h2>LoggedIn</h2>
+
+@if(Session["id_morador"] != null)
+{
+    <h4>Hello @Session["nome"].ToString()</h4>
+}
+
+<div>
+    <h4>MORADOR</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ano)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ano)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ativo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ativo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.login)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.login)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.senha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.senha)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_morador }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

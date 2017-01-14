@@ -16,24 +16,21 @@ namespace SiteVarzea.Controllers
 {
     public class ContasController : Controller
     {
-        private RepVarzeaEntities db = new RepVarzeaEntities();
-        private Functions functions = new Functions();
+        private readonly RepVarzeaEntities db = new RepVarzeaEntities();
+        private readonly Functions functions = new Functions();
 
-        // GET: Contas
-        public ActionResult Index()
-        {
-            var gASTO = db.GASTO.Include(g => g.MORADOR);
-            return View(gASTO.ToList());
-        }
-
-        #region mostraExtras
+        #region mostraExtrasGeral
         public ActionResult Extras()
         {
+            //Verifica se é morador ativo
+            if (!functions.possuiPermissao(Session["id_morador"]))
+                return Redirect("~/Error/Erro401");
+
             string connectionString = ConfigurationManager.ConnectionStrings["RepVarzeaWin"].ConnectionString;
-            string sql = "SELECT  id_gasto,data ,pagou.nome,valor,descricao " +
-                         "FROM GASTO g " +
-                         "LEFT OUTER JOIN MORADOR pagou ON pagou.id_morador = g.id_morador;";
-            MORADOR aux = new MORADOR();
+            const string sql = "SELECT  id_gasto,data ,pagou.nome,valor,descricao " +
+                               "FROM GASTO g " +
+                               "LEFT OUTER JOIN MORADOR pagou ON pagou.id_morador = g.id_morador;";
+
             var model = new List<GASTO>();
             try
             {
@@ -64,10 +61,57 @@ namespace SiteVarzea.Controllers
             }
             return View(model);
         }
+
+        public ActionResult ExtrasPessoal()
+        {
+            double totalPagar = 0;
+            double totalRebeber = 0;
+           
+            //Verifica se é morador ativo
+            if (!functions.possuiPermissao(Session["id_morador"]))
+                return Redirect("~/Error/Erro401");
+
+            int idMorador = (int) Session["id_morador"];
+            //Calcula quanto deve(Valor de cada gasto_morador relacionado à seu ID)
+            foreach (var gm in db.GASTO_MORADOR.Where(u => u.MORADOR.id_morador == idMorador ))
+            {
+
+                int count = db.GASTO_MORADOR.Count(u => u.GASTO.id_gasto == gm.GASTO.id_gasto);
+                GASTO gasto = db.GASTO.FirstOrDefault(u => u.id_gasto == gm.GASTO.id_gasto);
+                if (gasto == null) continue;
+
+                double valor = gasto.valor/count;
+                totalPagar += valor;
+            }
+
+            //Calcula quanto gastou(Valor de cada Gasto relacionado à seu ID)
+            foreach (var g in db.GASTO.Where(u => u.id_morador == idMorador))
+            {
+                totalRebeber += g.valor;
+            }
+            double totalLiquido = totalRebeber - totalPagar;
+
+            GASTO_MORADOR morador = new GASTO_MORADOR
+            {
+                nome = (from u in db.MORADOR
+                    where u.id_morador == idMorador
+                    select u.nome).SingleOrDefault(),
+                totalPagar = totalPagar,
+                totalReceber = totalRebeber,
+                totalLiquido = totalLiquido
+            };
+
+            return View(morador);
+        }
         #endregion
 
+        #region incluiExtras
         public ActionResult Novo()
         {
+            //Verifica se é morador ativo
+            if (!functions.possuiPermissao(Session["id_morador"]))
+                return Redirect("~/Error/Erro401");
+
             CollectionVM collectionVM = new CollectionVM();
             List<ChoiceViewModel> choiceList = db.MORADOR.Where(user => user.ativo == 1).OrderBy(n => n.nome).Select(user => new ChoiceViewModel() {SNo = user.id_morador, Text = user.nome}).ToList();
 
@@ -81,7 +125,8 @@ namespace SiteVarzea.Controllers
         [HttpPost]
         public ActionResult Novo(CollectionVM collectionVM, GASTO gASTO)
         {
-            if (string.IsNullOrEmpty(Session["id_morador"].ToString()))
+            //Verifica se é morador ativo
+            if (!functions.possuiPermissao(Session["id_morador"]))
                 return Redirect("~/Error/Erro401");
 
             var selecionados = collectionVM.SelectedChoices;
@@ -111,6 +156,7 @@ namespace SiteVarzea.Controllers
             }
             return RedirectToAction("Extras");
         }
+        #endregion
 
         protected override void Dispose(bool disposing)
         {

@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Extras";
+}
+
+@model SiteVarzea.Models.GASTO_MORADOR
+
+<h1 align="center">Gastos Pessoais</h1>
+
+
+
+<div style="display: inline-block; text-align: right; margin-left: 15%">
+    <table class="table-fade">
+        <tr>
+            <th>Total a pagar</th>
+            <th>Total a receber</th>
+            <th>Total Líquido</th>
+        </tr>
+        <tr>
+            <td>
+                <font color="red">
+                    @($"{@Model.totalPagar:c}")
+                </font>
+            </td>
+            <td>
+                <font color="green">
+                    @($"{@Model.totalReceber:c}")
+                </font>
+            </td>
+            <td>
+                @{
+                    ViewBag.Cor = Model.totalLiquido < 0 ? "red" : "green";
+                }
+                <font color=@ViewBag.Cor>
+
+                    @($"{@Model.totalLiquido:c}")
+                </font>
+            </td>
+        </tr>
+    </table>
+    <input type="button" value="Extras" class="btn btn-default" onclick="location.href = '@Url.Action("Extras", "Contas")'"/>
+</div>

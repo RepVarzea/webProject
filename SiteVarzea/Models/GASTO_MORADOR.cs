@@ -20,6 +20,15 @@ namespace SiteVarzea.Models
 
         public virtual GASTO GASTO { get; set; }
 
+        
+        public virtual double totalReceber { get; set; }
+
+        public virtual double totalPagar { get; set; }
+
+        public virtual double totalLiquido { get; set; }
+
+        public virtual string nome { get; set; }
+
         [Required(ErrorMessage = "Favor informar a quem cobrar")]
         public virtual MORADOR MORADOR { get; set; }
     }

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<SiteVarzea.Models.MORADOR>
+
+@{
+    ViewBag.Title = "Varzeanos";
+}
+
+<h2 class="text-center">Moradores</h2>
+
+<table class="table-fade">
+    <tr>
+        <th>
+            @Html.Label("Nome")
+        </th>
+        <th>
+            @Html.Label("Ano")
+        </th>
+        <th>
+            @Html.Label("Morando")
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @if (item.nome != "TODOS")
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ano)
+            </td>
+            <td>
+                @if (item.ativo == 1)
+                {
+
+                    @Html.Label("Sim")
+                    ;
+
+                }
+                else
+                {
+                    @Html.Label("Não")
+                    ;
+                }
+            </td>
+        }
+
+    </tr>
+}
+
+</table>

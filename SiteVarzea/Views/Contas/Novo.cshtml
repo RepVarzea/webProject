@@ -32,7 +32,7 @@
         <table class="table-fade">
             <tr>
                 <th>
-                    <input id="select_all" type="checkbox" name="SelectedChoices" class="checkbox-inline" /> Moradores a cobrar
+                    <input id="select_all" type="checkbox" name="selectedAll" class="checkbox-inline" /> Moradores a cobrar
                 </th>
             </tr>
 
@@ -49,7 +49,8 @@
                                name="SelectedChoices"
                                value="@choice.SNo"
                                class="checkbox-inline"
-                               @(ViewBag.MoradorList.SelectedChoices.Contains(choice.SNo) ? "checked" : "") />
+                               @(ViewBag.MoradorList.SelectedChoices.Contains(choice.SNo) ? "checked" : "")/>
+                        <label >SNO: @choice.SNo</label>
                         <label for="operator@(choice.SNo)">@choice.Text</label>
                     </td>
                 </tr>

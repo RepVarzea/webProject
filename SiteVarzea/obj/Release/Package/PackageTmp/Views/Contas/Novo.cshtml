@@ -1,0 +1,65 @@
+﻿@model SiteVarzea.Models.GASTO
+
+@{
+    ViewBag.Title = "Novo gasto";
+
+}
+@ViewBag.Javascript
+<h2 align="center">Novo gasto</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div style="display: inline-block; text-align: right;margin-left: 15%">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <table class="table-fade">
+            <tr>
+                <th>Valor gasto</th>
+                <th>Descrição</th>
+            </tr>
+            <tr>
+                <td>
+                    @Html.EditorFor(model => model.valor, new {htmlAttributes = new {@class = "form-control"}})
+                    @Html.ValidationMessageFor(model => model.valor, "", new {@class = "text-danger"})
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.descricao, new {htmlAttributes = new {@class = "form-control"}})
+                    @Html.ValidationMessageFor(model => model.descricao, "", new {@class = "text-danger"})
+                </td>
+            </tr>
+        </table>
+
+        <table class="table-fade">
+            <tr>
+                <th>
+                    <input id="select_all" type="checkbox" name="selectedAll" class="checkbox-inline" /> Moradores a cobrar
+                </th>
+            </tr>
+
+            @foreach (var choice in ViewBag.MoradorList.ChoicesVM)
+            {
+                if (choice.Text == "TODOS")
+                {
+                    continue;
+                }
+                <tr>
+                    <td>
+                        <input id="choice@(choice.SNo)"
+                               type="checkbox"
+                               name="SelectedChoices"
+                               value="@choice.SNo"
+                               class="checkbox-inline"
+                               @(ViewBag.MoradorList.SelectedChoices.Contains(choice.SNo) ? "checked" : "")/>
+                        <label >SNO: @choice.SNo</label>
+                        <label for="operator@(choice.SNo)">@choice.Text</label>
+                    </td>
+                </tr>
+            }
+        </table>
+        <input type="submit" value="Submit" name="submitBtn"  class="btn btn-default" id="submitBtn"/>
+    </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/checkAll.js")
+}
