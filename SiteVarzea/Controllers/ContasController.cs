@@ -57,7 +57,7 @@ namespace SiteVarzea.Controllers
             }
             catch (Exception)
             {
-                ModelState.AddModelError("","Erro!");
+                ModelState.AddModelError("", "Erro!");
             }
             return View(model);
         }
@@ -66,21 +66,21 @@ namespace SiteVarzea.Controllers
         {
             double totalPagar = 0;
             double totalRebeber = 0;
-           
+
             //Verifica se é morador ativo
             if (!functions.possuiPermissao(Session["id_morador"]))
                 return Redirect("~/Error/Erro401");
 
-            int idMorador = (int) Session["id_morador"];
+            int idMorador = (int)Session["id_morador"];
             //Calcula quanto deve(Valor de cada gasto_morador relacionado à seu ID)
-            foreach (var gm in db.GASTO_MORADOR.Where(u => u.MORADOR.id_morador == idMorador ))
+            foreach (var gm in db.GASTO_MORADOR.Where(u => u.MORADOR.id_morador == idMorador))
             {
 
                 int count = db.GASTO_MORADOR.Count(u => u.GASTO.id_gasto == gm.GASTO.id_gasto);
                 GASTO gasto = db.GASTO.FirstOrDefault(u => u.id_gasto == gm.GASTO.id_gasto);
                 if (gasto == null) continue;
 
-                double valor = gasto.valor/count;
+                double valor = gasto.valor / count;
                 totalPagar += valor;
             }
 
@@ -94,8 +94,8 @@ namespace SiteVarzea.Controllers
             GASTO_MORADOR morador = new GASTO_MORADOR
             {
                 nome = (from u in db.MORADOR
-                    where u.id_morador == idMorador
-                    select u.nome).SingleOrDefault(),
+                        where u.id_morador == idMorador
+                        select u.nome).SingleOrDefault(),
                 totalPagar = totalPagar,
                 totalReceber = totalRebeber,
                 totalLiquido = totalLiquido
@@ -108,17 +108,22 @@ namespace SiteVarzea.Controllers
         #region incluiExtras
         public ActionResult Novo()
         {
+            Object i = null;
+            string a = i.ToString();
             //Verifica se é morador ativo
             if (!functions.possuiPermissao(Session["id_morador"]))
                 return Redirect("~/Error/Erro401");
 
             CollectionVM collectionVM = new CollectionVM();
-            List<ChoiceViewModel> choiceList = db.MORADOR.Where(user => user.ativo == 1).OrderBy(n => n.nome).Select(user => new ChoiceViewModel() {SNo = user.id_morador, Text = user.nome}).ToList();
+            List<ChoiceViewModel> choiceList =
+                db.MORADOR.Where(user => user.ativo == 1)
+                    .OrderBy(n => n.nome)
+                    .Select(user => new ChoiceViewModel() { SNo = user.id_morador, Text = user.nome })
+                    .ToList();
 
             collectionVM.ChoicesVM = choiceList;
             collectionVM.SelectedChoices = new List<long>();
             ViewBag.MoradorList = collectionVM;
-
             return View();
         }
 
@@ -136,7 +141,7 @@ namespace SiteVarzea.Controllers
             GASTO gasto = new GASTO
             {
                 MORADOR = db.MORADOR.FirstOrDefault(u => u.id_morador == idPagou),
-                id_morador = idPagou ,
+                id_morador = idPagou,
                 valor = gASTO.valor,
                 descricao = gASTO.descricao,
                 data = DateTime.Now
@@ -149,7 +154,7 @@ namespace SiteVarzea.Controllers
                 GASTO_MORADOR gm = new GASTO_MORADOR
                 {
                     MORADOR = db.MORADOR.FirstOrDefault(u => u.id_morador == id_morador),
-                    GASTO = db.GASTO.FirstOrDefault(u => u.id_gasto == gasto.id_gasto )
+                    GASTO = db.GASTO.FirstOrDefault(u => u.id_gasto == gasto.id_gasto)
                 };
                 db.GASTO_MORADOR.Add(gm);
                 db.SaveChanges();
