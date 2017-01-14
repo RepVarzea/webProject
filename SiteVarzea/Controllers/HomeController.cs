@@ -21,14 +21,9 @@ namespace SiteVarzea.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Venha visitar nossa República!";
             return View();
         }
 
-        public ActionResult Error(string message)
-        {
-            ViewBag.Message = message;
-            return View();
-        }
     }
 }
