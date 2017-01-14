@@ -162,7 +162,7 @@
     <Compile Include="Controllers\ContasController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MORADORsController.cs" />
+    <Compile Include="Controllers\CasaController.cs" />
     <Compile Include="Classes\Functions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -262,6 +262,7 @@
     <None Include="Properties\PublishProfiles\repvarzea - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\repvarzea - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\RepVarzea.pubxml" />
+    <None Include="Properties\PublishProfiles\Somee.pubxml" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\checkAll.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
@@ -291,12 +292,12 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\MORADORs\Registrar.cshtml" />
-    <Content Include="Views\MORADORs\Index.cshtml" />
-    <Content Include="Views\MORADORs\Login.cshtml" />
-    <Content Include="Views\MORADORs\LoggedIn.cshtml" />
-    <Content Include="Views\MORADORs\Logout.cshtml" />
-    <Content Include="Views\MORADORs\Moradores.cshtml" />
+    <Content Include="Views\Casa\Registrar.cshtml" />
+    <Content Include="Views\Casa\Index.cshtml" />
+    <Content Include="Views\Casa\Login.cshtml" />
+    <Content Include="Views\Casa\LoggedIn.cshtml" />
+    <Content Include="Views\Casa\Logout.cshtml" />
+    <Content Include="Views\Casa\Moradores.cshtml" />
     <Content Include="Views\Error\Erro404.cshtml" />
     <Content Include="Views\Error\Erro401.cshtml" />
     <Content Include="Views\Contas\Extras.cshtml" />

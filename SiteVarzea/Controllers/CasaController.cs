@@ -13,17 +13,10 @@ using SiteVarzea.Classes;
 
 namespace SiteVarzea.Controllers
 {
-    public class MORADORsController : Controller
+    public class CasaController : Controller
     {
         private readonly RepVarzeaEntities db = new RepVarzeaEntities();
         private Functions verifica = new Functions();
-
-        // GET: MORADORs
-        public ActionResult Index()
-        {
-            var mORADOR = db.MORADOR.Include(m => m.GASTO);
-            return View(mORADOR.ToList());
-        }
 
         #region Moradores 
         public ActionResult Moradores()
