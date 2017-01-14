@@ -108,8 +108,6 @@ namespace SiteVarzea.Controllers
         #region incluiExtras
         public ActionResult Novo()
         {
-            Object i = null;
-            string a = i.ToString();
             //Verifica se é morador ativo
             if (!functions.possuiPermissao(Session["id_morador"]))
                 return Redirect("~/Error/Erro401");

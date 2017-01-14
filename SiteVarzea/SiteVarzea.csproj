@@ -190,7 +190,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Imagens\401.png" />
     <Content Include="Content\Imagens\404.jpg" />
     <Content Include="Content\themes\base\accordion.css" />
