@@ -41,9 +41,11 @@ namespace SiteVarzea.Controllers
             {
                 Session["id_morador"] = usr.id_morador;
                 Session["nome"] = usr.nome;
+                
                 //Habilita o botão "Novo morador" no menu
                 if (verifica.podeRegistar(usr.id_morador))
                     Session["todos"] = true;
+
                 return Redirect("~/Contas/ExtrasPessoal");
             }
             ModelState.AddModelError("", "Username or password is wrong.");
