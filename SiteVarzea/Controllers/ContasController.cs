@@ -61,6 +61,8 @@ namespace SiteVarzea.Controllers
             }
             return View(model);
         }
+        #endregion
+        #region Mostra Extras Pessoal
 
         public ActionResult ExtrasPessoal()
         {
@@ -72,6 +74,11 @@ namespace SiteVarzea.Controllers
                 return Redirect("~/Error/Erro401");
 
             int idMorador = (int)Session["id_morador"];
+
+            //Caso seja a conta do admin, mostrar todos os extras
+            if(idMorador == 1)
+                return Extras();
+
             //Calcula quanto deve(Valor de cada gasto_morador relacionado à seu ID)
             foreach (var gm in db.GASTO_MORADOR.Where(u => u.MORADOR.id_morador == idMorador))
             {

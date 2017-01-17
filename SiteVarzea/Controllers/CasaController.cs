@@ -52,24 +52,6 @@ namespace SiteVarzea.Controllers
         }
         #endregion
 
-        #region LoggedIn
-
-        //LoggedIn
-        public ActionResult LoggedIn()
-        {
-            if (Session["id_morador"] == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            MORADOR mORADOR = db.MORADOR.Find(Session["id_morador"]);
-            if (mORADOR == null)
-            {
-                return HttpNotFound();
-            }
-            return View(mORADOR);
-        }
-        #endregion
-
         #region Logout
         //Logout
         public ActionResult Logout()
