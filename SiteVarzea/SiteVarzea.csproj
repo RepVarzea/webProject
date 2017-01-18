@@ -233,10 +233,26 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="css\bootstrap.css" />
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\business-casual.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\bg.jpg" />
+    <Content Include="img\black_lee.jpg" />
+    <Content Include="img\casa.jpg" />
+    <Content Include="img\despertador.jpg" />
+    <Content Include="img\intro-pic.jpg" />
+    <Content Include="img\porteiro.jpg" />
+    <Content Include="img\rep.jpg" />
+    <Content Include="img\slide-1.png" />
+    <Content Include="img\slide-2.jpg" />
+    <Content Include="img\slide-3.jpg" />
+    <Content Include="js\bootstrap.js" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\jquery.js" />
     <Content Include="Models\DBVarzea.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DBVarzea.edmx</DependentUpon>

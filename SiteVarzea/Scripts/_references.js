@@ -1,4 +1,6 @@
 ﻿/// <autosync enabled="true" />
+/// <reference path="../js/bootstrap.js" />
+/// <reference path="../js/jquery.js" />
 /// <reference path="bootstrap.js" />
 /// <reference path="checkall.js" />
 /// <reference path="jquery.validate.js" />
